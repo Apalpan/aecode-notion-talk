@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/aecode-notion-talk/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <title>De información dispersa a sistemas vivos · AECODE × Notion</title>
+    <meta name="description" content="Charla de AECODE para la comunidad de Notion: cómo pasamos de operar con información dispersa a construir un sistema vivo de conocimiento, ejecución e IA — con el AI Construction Summit como caso real." />
+    <meta name="author" content="Erika Delgado · AECODE" />
+    <meta property="og:title" content="De información dispersa a sistemas vivos · AECODE × Notion" />
+    <meta property="og:description" content="Cómo usamos Notion en AECODE para ordenar conocimiento, ejecución e IA. Caso real: AI Construction Summit." />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#f7faf8" />
+    <script>
+      // Flash-free theme: aplica el tema guardado antes del primer paint. Claro por defecto.
+      (function () {
+        try {
+          var t = localStorage.getItem('aecode-notion-theme');
+          if (t !== 'dark' && t !== 'light') t = 'light';
+          document.documentElement.dataset.theme = t;
+        } catch (e) {
+          document.documentElement.dataset.theme = 'light';
+        }
+        document.documentElement.dataset.deck = 'notion-talk';
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

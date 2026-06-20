@@ -1,0 +1,203 @@
+/* =========================================================================
+   AECODE × NOTION — estilos específicos de la charla
+   «De información dispersa a sistemas vivos».
+   Hereda los tokens AECODE Jarvis-light (verde 152 + grafito). Aquí viven:
+   el modo presentador (teleprompter), y los visuales propios de este deck.
+   ========================================================================= */
+
+/* ===================== Modo presentador · teleprompter ================ */
+.teleprompter { position: fixed; left: 50%; bottom: 14px; transform: translateX(-50%); z-index: 60;
+  width: min(960px, calc(100vw - 32px)); display: grid; gap: 10px; padding: 14px 18px 16px;
+  border: 1px solid var(--border-strong); border-radius: var(--radius-lg);
+  background: color-mix(in oklch, var(--surface) 86%, transparent); backdrop-filter: blur(16px) saturate(1.3); -webkit-backdrop-filter: blur(16px) saturate(1.3);
+  box-shadow: 0 24px 60px -28px color-mix(in oklch, var(--blue) 90%, transparent); animation: tpin var(--dur-3) var(--ease-out); }
+@keyframes tpin { from { opacity: 0; transform: translate(-50%, 12px); } to { opacity: 1; transform: translate(-50%, 0); } }
+.tp-bar { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+.tp-where { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .06em; color: var(--muted); display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.tp-where b { color: var(--accent); }
+.tp-slot { font-style: normal; font-size: .68rem; letter-spacing: .04em; color: var(--accent); padding: 2px 8px; border-radius: 999px; border: 1px solid var(--hud-line); background: color-mix(in oklch, var(--accent) 8%, transparent); }
+.tp-timer { display: inline-flex; align-items: center; gap: 8px; }
+.tp-btn { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 9px; border: 1px solid var(--border); background: var(--surface);
+  color: var(--ink-soft); cursor: pointer; font-size: .82rem; transition: border-color var(--dur-1), color var(--dur-1); }
+.tp-btn:hover { border-color: var(--accent); color: var(--accent); }
+.tp-clock { font-family: var(--font-display); font-weight: 800; font-size: 1.3rem; color: var(--ink); font-variant-numeric: tabular-nums; min-width: 3.4ch; text-align: right; }
+.tp-clock.near { color: var(--accent); }
+.tp-clock.over { color: oklch(0.6 0.2 28); }
+.tp-target { font-family: var(--font-mono); font-size: .76rem; color: var(--faint); }
+.tp-progress { height: 4px; border-radius: 3px; background: color-mix(in oklch, var(--blue) 10%, transparent); overflow: hidden; }
+.tp-progress span { display: block; height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--accent), var(--accent-bright)); transition: width 1s linear; }
+.tp-progress span.over { background: oklch(0.6 0.2 28); }
+.tp-script { color: var(--ink-soft); font-size: clamp(.95rem, .88rem + .3vw, 1.18rem); line-height: 1.5; max-height: 28vh; overflow-y: auto; }
+.icon-btn.on { border-color: var(--accent); color: var(--accent); background: color-mix(in oklch, var(--accent) 12%, var(--surface)); }
+@media (prefers-reduced-motion: reduce) { .teleprompter { animation: none; } }
+
+/* ===================== Portada · firma del orador ===================== */
+.cover-sign { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-top: 6px; }
+.cover-sign .cs-name { font-family: var(--font-display); font-weight: 700; color: var(--ink); }
+.cover-sign .cs-role { color: var(--muted); font-size: var(--step--1); }
+.cover-sign .cs-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--border-strong); }
+
+/* ===================== S2 · Fuentes dispersas ========================= */
+.scatter { display: flex; flex-wrap: wrap; gap: 12px 14px; align-items: center; justify-content: center;
+  padding: clamp(18px, 4vh, 40px) clamp(10px, 4vw, 40px); margin-top: 4px; }
+.scatter-chip { display: inline-flex; align-items: center; gap: 9px; padding: 11px 16px; border-radius: 14px;
+  border: 1px solid var(--border); background: var(--surface);
+  box-shadow: 0 14px 34px -28px color-mix(in oklch, var(--blue) 80%, transparent);
+  font-family: var(--font-display); font-weight: 600; color: var(--ink-soft); font-size: var(--step-0);
+  transition: transform var(--dur-2) var(--ease-out), border-color var(--dur-2), box-shadow var(--dur-2);
+  will-change: transform; }
+.scatter-chip i { font-style: normal; font-size: 1.15em; filter: grayscale(.15); }
+.scatter-chip:nth-child(7n+1) { transform: rotate(-3.5deg) translateY(-4px); }
+.scatter-chip:nth-child(7n+2) { transform: rotate(2.5deg) translateY(6px); }
+.scatter-chip:nth-child(7n+3) { transform: rotate(-1.5deg) translateY(-8px); }
+.scatter-chip:nth-child(7n+4) { transform: rotate(4deg) translateY(3px); }
+.scatter-chip:nth-child(7n+5) { transform: rotate(-2.5deg) translateY(8px); }
+.scatter-chip:nth-child(7n+6) { transform: rotate(1.5deg) translateY(-5px); }
+.scatter-chip:nth-child(7n+7) { transform: rotate(-4deg) translateY(2px); }
+.scatter-chip:hover { transform: rotate(0) translateY(-3px) scale(1.04); border-color: var(--accent);
+  box-shadow: 0 22px 48px -28px color-mix(in oklch, var(--accent) 70%, transparent); }
+.scatter-chip.ghost { border-style: dashed; color: var(--muted); background: color-mix(in oklch, var(--surface) 50%, transparent); }
+@media (prefers-reduced-motion: reduce) { .scatter-chip { transform: none !important; } }
+
+/* ===================== S3 · Doble costo + fricción =================== */
+.cost2 { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(16px, 2.4vw, 30px); align-items: stretch; }
+.cost2-hero { position: relative; padding: 26px; border-radius: var(--radius-lg); overflow: hidden;
+  border: 1px solid color-mix(in oklch, var(--accent) 40%, var(--border));
+  background: linear-gradient(165deg, color-mix(in oklch, var(--accent) 12%, var(--surface)), var(--surface));
+  display: flex; flex-direction: column; justify-content: center; gap: 8px; }
+.cost2-x { font-family: var(--font-display); font-weight: 800; font-size: clamp(3rem, 2rem + 6vw, 5.4rem); line-height: 0.95;
+  color: var(--accent); letter-spacing: -0.03em; }
+.cost2-lead { color: var(--ink); font-family: var(--font-display); font-weight: 600; font-size: var(--step-1); }
+.cost2-sub { color: var(--muted); font-size: var(--step--1); line-height: 1.5; }
+.cost2-pays { display: flex; flex-direction: column; gap: 10px; margin-top: 6px; }
+.cost2-pay { display: flex; gap: 11px; align-items: flex-start; padding: 11px 14px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); }
+.cost2-pay b { flex: 0 0 auto; width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center;
+  background: var(--accent); color: var(--accent-ink); font-family: var(--font-display); font-weight: 800; font-size: .82rem; }
+.cost2-pay span { color: var(--ink-soft); font-size: var(--step--1); line-height: 1.45; }
+.cost2-pay span em { font-style: normal; color: var(--ink); font-weight: 600; }
+.frictions { display: flex; flex-direction: column; gap: 9px; justify-content: center; }
+.friction { position: relative; padding: 12px 15px 12px 38px; border-radius: 12px; border: 1px solid var(--border);
+  background: var(--surface); color: var(--ink-soft); font-size: var(--step--1); line-height: 1.4;
+  transition: transform var(--dur-2) var(--ease-out), border-color var(--dur-2); }
+.friction::before { content: '“'; position: absolute; left: 13px; top: 6px; font-family: var(--font-display); font-weight: 800;
+  font-size: 1.5rem; color: var(--accent); line-height: 1; }
+.friction:hover { transform: translateX(5px); border-color: var(--accent); }
+.friction em { font-style: normal; color: var(--ink); font-weight: 600; }
+@media (max-width: 900px) { .cost2 { grid-template-columns: 1fr; } }
+
+/* ===================== S6 · Notion como sistema (hub) ================ */
+.notion-hub { position: relative; min-height: 380px; border: 1px solid var(--border); border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, var(--surface), color-mix(in oklch, var(--accent) 5%, var(--surface))); overflow: hidden; }
+.notion-hub::before, .notion-hub::after { content: ''; position: absolute; border-radius: 50%; pointer-events: none;
+  border: 1px dashed color-mix(in oklch, var(--accent) 32%, transparent); }
+.notion-hub::before { inset: 46px 20%; }
+.notion-hub::after { inset: 104px 33%; border-color: color-mix(in oklch, var(--blue) 26%, transparent); }
+.nh-core { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 150px; height: 150px; border-radius: 26px;
+  display: grid; place-content: center; text-align: center; gap: 4px; z-index: 3;
+  background: linear-gradient(155deg, var(--accent), color-mix(in oklch, var(--accent) 70%, var(--blue)));
+  color: var(--accent-ink); box-shadow: 0 24px 60px -26px color-mix(in oklch, var(--accent) 80%, transparent); }
+.nh-core b { font-family: var(--font-display); font-weight: 800; font-size: 1.35rem; letter-spacing: -0.01em; }
+.nh-core span { font-size: .68rem; letter-spacing: .04em; opacity: .92; padding: 0 12px; }
+.nh-node { position: absolute; min-width: 124px; padding: 10px 12px; border-radius: 13px; text-align: center;
+  border: 1px solid var(--border); background: var(--surface); color: var(--ink); font-family: var(--font-display); font-weight: 700; font-size: .86rem;
+  box-shadow: 0 16px 38px -30px color-mix(in oklch, var(--blue) 80%, transparent);
+  transition: transform var(--dur-2) var(--ease-out), border-color var(--dur-2), box-shadow var(--dur-2); }
+.nh-node small { display: block; font-family: var(--font-text); font-weight: 500; color: var(--muted); font-size: .66rem; margin-top: 2px; }
+.nh-node:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 24px 50px -28px color-mix(in oklch, var(--accent) 70%, transparent); }
+.nh-node:nth-child(2) { left: calc(50% - 62px); top: 14px; }
+.nh-node:nth-child(3) { right: 7%; top: 70px; }
+.nh-node:nth-child(4) { right: 4%; top: 50%; transform: translateY(-50%); }
+.nh-node:nth-child(5) { right: 7%; bottom: 70px; }
+.nh-node:nth-child(6) { left: calc(50% - 62px); bottom: 14px; }
+.nh-node:nth-child(7) { left: 7%; bottom: 70px; }
+.nh-node:nth-child(8) { left: 4%; top: 50%; transform: translateY(-50%); }
+.nh-node:nth-child(9) { left: 7%; top: 70px; }
+@media (max-width: 900px) {
+  .notion-hub { min-height: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 14px; }
+  .notion-hub::before, .notion-hub::after { display: none; }
+  .nh-core { position: static; transform: none; width: auto; height: auto; grid-column: 1 / -1; min-height: 96px; padding: 14px; }
+  .nh-node { position: static; transform: none !important; min-width: 0; }
+}
+
+/* ===================== S7 · Frentes del Summit ======================= */
+.frentes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 11px; }
+.frente { position: relative; padding: 14px 15px; border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--surface); display: flex; flex-direction: column; gap: 5px; overflow: hidden;
+  transition: transform var(--dur-2) var(--ease-out), border-color var(--dur-2), box-shadow var(--dur-2); }
+.frente::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--accent); opacity: .8; }
+.frente:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 18px 40px -30px color-mix(in oklch, var(--accent) 70%, transparent); }
+.frente .fr-n { font-family: var(--font-mono); font-size: .68rem; color: var(--accent); letter-spacing: .04em; }
+.frente .fr-t { font-family: var(--font-display); font-weight: 700; color: var(--ink); font-size: .95rem; line-height: 1.12; }
+.frente .fr-d { color: var(--muted); font-size: .72rem; line-height: 1.4; }
+@media (max-width: 1120px) { .frentes { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 760px) { .frentes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* ===================== S8 · Sponsors → CRM (board Notion) =========== */
+.sponsor { display: flex; flex-direction: column; gap: 14px; }
+.sb-pipe { display: flex; flex-wrap: wrap; gap: 7px; align-items: center; }
+.sb-stage { font-family: var(--font-mono); font-size: .7rem; letter-spacing: .02em; padding: 5px 11px; border-radius: 999px;
+  border: 1px solid var(--border); background: var(--surface); color: var(--muted); white-space: nowrap; }
+.sb-stage.on { border-color: transparent; background: var(--accent); color: var(--accent-ink); font-weight: 700; }
+.sb-arrow { color: var(--faint); font-weight: 700; }
+.sb-board { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.sb-col { display: flex; flex-direction: column; gap: 9px; padding: 11px; border-radius: var(--radius);
+  background: color-mix(in oklch, var(--bg-deep) 60%, transparent); border: 1px solid var(--border); min-height: 150px; }
+.sb-col-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 0 2px 2px; }
+.sb-col-head b { font-family: var(--font-display); font-weight: 700; font-size: .82rem; color: var(--ink); display: inline-flex; align-items: center; gap: 7px; }
+.sb-col-head b::before { content: ''; width: 8px; height: 8px; border-radius: 3px; background: var(--ac, var(--accent)); }
+.sb-col-head em { font-style: normal; font-family: var(--font-mono); font-size: .68rem; color: var(--faint); }
+.sb-card { padding: 11px 12px; border-radius: 11px; background: var(--surface); border: 1px solid var(--border);
+  box-shadow: 0 10px 26px -24px color-mix(in oklch, var(--blue) 80%, transparent);
+  transition: transform var(--dur-2) var(--ease-out), border-color var(--dur-2), box-shadow var(--dur-2); }
+.sb-card:hover { transform: translateY(-3px); border-color: var(--accent); box-shadow: 0 18px 38px -26px color-mix(in oklch, var(--accent) 60%, transparent); }
+.sb-card .sc-co { display: flex; align-items: center; gap: 8px; font-family: var(--font-display); font-weight: 700; color: var(--ink); font-size: .9rem; }
+.sb-card .sc-av { width: 22px; height: 22px; border-radius: 7px; display: grid; place-items: center; font-size: .72rem;
+  background: color-mix(in oklch, var(--accent) 16%, var(--surface)); border: 1px solid var(--border); }
+.sb-card .sc-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+.sb-card .sc-tag { font-size: .64rem; padding: 2px 8px; border-radius: 999px; background: color-mix(in oklch, var(--blue) 8%, var(--surface));
+  border: 1px solid var(--border); color: var(--muted); white-space: nowrap; }
+.sb-card .sc-tag.hot { background: color-mix(in oklch, var(--accent) 16%, var(--surface)); border-color: color-mix(in oklch, var(--accent) 36%, transparent); color: var(--accent); font-weight: 600; }
+.sb-props { display: flex; flex-wrap: wrap; gap: 7px; padding: 13px 15px; border-radius: var(--radius);
+  border: 1px dashed var(--border-strong); background: color-mix(in oklch, var(--accent) 4%, var(--surface)); }
+.sb-props .spk { font-family: var(--font-mono); font-size: .68rem; color: var(--muted); letter-spacing: .03em;
+  padding: 4px 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); }
+.sb-props .spk b { color: var(--accent); }
+@media (max-width: 1000px) { .sb-board { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .sb-board { grid-template-columns: 1fr; } .sb-col { min-height: 0; } }
+
+/* ===================== S10 · Notion + IA + Equipo (tríada) ========== */
+.triad { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.triad article { position: relative; padding: 20px; border-radius: var(--radius-lg); border: 1px solid var(--border); background: var(--surface);
+  display: flex; flex-direction: column; gap: 8px; overflow: hidden;
+  box-shadow: 0 18px 52px -42px color-mix(in oklch, var(--blue) 80%, transparent);
+  transition: transform var(--dur-2) var(--ease-out), border-color var(--dur-2), box-shadow var(--dur-2); }
+.triad article:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 28px 64px -42px color-mix(in oklch, var(--accent) 70%, transparent); }
+.triad article:nth-child(3) { background: linear-gradient(170deg, color-mix(in oklch, var(--accent) 10%, var(--surface)), var(--surface)); border-color: color-mix(in oklch, var(--accent) 36%, var(--border)); }
+.triad .tr-i { width: 42px; height: 42px; border-radius: 13px; display: grid; place-items: center; font-size: 1.2rem;
+  background: var(--blue); color: #fff; margin-bottom: 4px; }
+.triad article:nth-child(3) .tr-i { background: var(--accent); color: var(--accent-ink); }
+.triad h3 { font-size: var(--step-1); }
+.triad .tr-role { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+.triad p { color: var(--muted); font-size: var(--step--1); line-height: 1.45; }
+.rules { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.rule { display: flex; align-items: center; gap: 10px; padding: 12px 15px; border-radius: var(--radius); border: 1px solid var(--border);
+  border-left: 3px solid var(--accent); background: var(--surface); }
+.rule .ru-if { color: var(--ink-soft); font-size: var(--step--1); }
+.rule .ru-if em { font-style: normal; color: var(--ink); font-weight: 600; }
+.rule .ru-arrow { color: var(--accent); font-weight: 800; }
+.rule .ru-then { font-family: var(--font-display); font-weight: 700; color: var(--accent); font-size: var(--step-0); white-space: nowrap; }
+@media (max-width: 900px) { .triad, .rules { grid-template-columns: 1fr; } }
+
+/* ===================== S11 · Lecciones aprendidas =================== */
+.lessons { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.lesson { display: flex; gap: 14px; align-items: flex-start; padding: 16px 18px; border-radius: var(--radius);
+  border: 1px solid var(--border); background: var(--surface);
+  transition: transform var(--dur-2) var(--ease-out), border-color var(--dur-2), box-shadow var(--dur-2); }
+.lesson:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 20px 44px -30px color-mix(in oklch, var(--accent) 65%, transparent); }
+.lesson .le-n { flex: 0 0 auto; width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center;
+  background: linear-gradient(150deg, var(--accent), color-mix(in oklch, var(--accent) 68%, var(--blue)));
+  color: var(--accent-ink); font-family: var(--font-display); font-weight: 800; }
+.lesson .le-t { font-family: var(--font-display); font-weight: 700; color: var(--ink); font-size: var(--step-0); line-height: 1.2; }
+.lesson .le-d { color: var(--muted); font-size: var(--step--1); line-height: 1.45; margin-top: 4px; }
+.lesson:last-child:nth-child(odd) { grid-column: 1 / -1; }
+@media (max-width: 900px) { .lessons { grid-template-columns: 1fr; } .lesson:last-child:nth-child(odd) { grid-column: auto; } }
