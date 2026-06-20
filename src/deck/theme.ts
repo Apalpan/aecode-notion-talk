@@ -6,7 +6,7 @@ const KEY = 'aecode-notion-theme'
 
 function current(): Theme {
   const t = document.documentElement.dataset.theme
-  return t === 'dark' ? 'dark' : 'light'
+  return t === 'light' ? 'light' : 'dark'
 }
 
 export function useTheme(): [Theme, () => void] {
